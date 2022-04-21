@@ -14,8 +14,8 @@
     <div class="container">
         <header>
             <div>
-                <a href="">Add Data</a>
-                <a href="">Back</a>
+                <a href="" class="btn btn-primary mt-3">Add Data</a>
+                <a href="" class="btn btn-primary mt-3 ">Back</a>
             </div>
         </header>
         <div class="mt-5">
@@ -32,15 +32,19 @@
                   </tr>
                 </thead>
                 <tbody>
-
+                  {{-- {{ dd($data->product_list) }} --}}
+                  @foreach ($data->product_list as $key=>$dt)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{ $key+1 }}</th>
+                    <td>{{ $dt->prod_name }}</td>
+                    <td>{{ $dt->prod_brand }}</td>
+                    <td>{{ $dt->prod_price }}</td>
+                    <td>{{ $dt->product_category->cat_name }}</td>
+                    <td>{{ $dt->product_category->description }}</td>
+                    
                   </tr>
+                  @endforeach
+                 
                   
                 </tbody>
               </table>

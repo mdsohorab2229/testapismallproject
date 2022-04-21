@@ -11,20 +11,32 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
     <div class="container">
         <header>
-
         </header>
         <div class="mt-5">
-            <form>
+            <h1>Add Product Data</h1>
+            <form action="{{ url('product/add') }}" method="POST">
+              @csrf
                 <div class="row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="Enter email" name="email">
+                  <div class="col-md-6">
+                    <div class="mt-2">
+                      <input type="text" class="form-control" placeholder="Enter Product Name" name="prod_name">
+                    </div>
+                    <div class="mt-2">
+                      <input type="text" class="form-control" placeholder="Enter Product Brand" name="prod_brand">
+                    </div>
+                    <div class="mt-2">
+                      <input type="text" class="form-control" placeholder="Enter Product Price" name="prod_price">
+                    </div>
+                   <div class="mt-2">
+                    <input type="text" class="form-control" placeholder="Enter Category Id" name="cat_id">
+                   </div>
+                   <div class="mt-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
                   </div>
-                  <div class="col">
-                    <input type="password" class="form-control" placeholder="Enter password" name="pswd">
-                  </div>
+                  <div class="col-md-6"> </div>
                 </div>
               </form>
         </div>

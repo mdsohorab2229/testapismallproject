@@ -14,10 +14,9 @@ class AllProductController extends Controller
     public function index()
     {
     //   $data= Http::get($this->base_urls['product']. 'product/show');
-      $data= Http::get('http://192.168.0.195:8000/api/product/show');
-
-        return response()->json($data->object());
-    //    return view('fontend.index');
+       $data1 = Http::get('http://192.168.0.195:8001/api/product/show');
+       $data = $data1->object();
+       return view('fontend.product.index')->with('data',$data);
 
     }
 
@@ -28,7 +27,7 @@ class AllProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('fontend.product.create');
     }
 
     /**
@@ -39,7 +38,8 @@ class AllProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Http::post('http://192.168.0.195:8001/api/product/add',$request->all());
+        
     }
 
     /**

@@ -14,8 +14,8 @@
     <div class="container">
         <header>
             <div>
-                <a href="" class="btn btn-primary mt-3">Add Data</a>
-                <a href="" class="btn btn-primary mt-3 ">Back</a>
+                <a href="{{ url('product/create') }}" class="btn btn-primary mt-3">Add Data</a>
+                <a href="{{ url('product/list') }}" class="btn btn-primary mt-3 ">Back</a>
             </div>
         </header>
         <div class="mt-5">
@@ -28,7 +28,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Category</th>
                     <th scope="col">description</th>
-
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -41,6 +41,8 @@
                     <td>{{ $dt->prod_price }}</td>
                     <td>{{ $dt->product_category->cat_name }}</td>
                     <td>{{ $dt->product_category->description }}</td>
+                    <td><a href="{{ url('product/edit/'.$dt->id) }}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{{ url('product/delete/'.$dt->id) }}" class="btn btn-danger">delete</a></td>
                     
                   </tr>
                   @endforeach

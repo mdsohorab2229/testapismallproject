@@ -14,7 +14,7 @@ class AllProductController extends Controller
     public function index()
     {
     //   $data= Http::get($this->base_urls['product']. 'product/show');
-       $data1 = Http::get('http://192.168.0.195:8001/api/product/show');
+       $data1 = Http::get('http://192.168.0.195:8001/api/product/list');
        $data = $data1->object();
        return view('fontend.product.index')->with('data',$data);
 
@@ -38,7 +38,14 @@ class AllProductController extends Controller
      */
     public function store(Request $request)
     {
-        Http::post('http://192.168.0.195:8001/api/product/add',$request->all());
+       Http::post('http://192.168.0.195:8001/api/product/add', $request->all());
+       return redirect('product/list');
+    //    return view('fontend.product.index');
+
+        // return response()->json('Data Add success fully');
+        // return response()->json($res->object());
+        // return $res->object();
+        // dd($res->object());
         
     }
 
@@ -50,7 +57,9 @@ class AllProductController extends Controller
      */
     public function show($id)
     {
-        //
+       $showData= Http::get('http://192.168.0.195:8001/api/product/show'.$id);
+        dd($showData);
+       
     }
 
     /**
@@ -61,7 +70,9 @@ class AllProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editProduct=Http::put('http://192.168.0.195:8001/api/product/update'.$id);
+        $data=$editProduct->object();
+        return view('fontend.product.edit')->with('data',$data);
     }
 
     /**
@@ -73,7 +84,7 @@ class AllProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Http::put('http://192.168.0.195:8001/api/product/update'.$id .$request->all());
     }
 
     /**
@@ -84,6 +95,8 @@ class AllProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+    
+        Http::delete('http://192.168.0.195:8001/api/product/delet/'.$id);
+        return redirect('product/list');
     }
 }
